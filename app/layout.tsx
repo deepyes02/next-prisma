@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Navigation from './navigation';
+import './main.css';
 
 export const metadata : Metadata = {
 	title: 'Hello world',
@@ -8,9 +9,11 @@ export const metadata : Metadata = {
 }
 
 export default function RootLayout({
-	children,
+	children
 } : {
 	children:React.ReactNode;
+	// blogs: React.ReactNode;
+	// dashboard: React.ReactNode;
 }) {
 	
 	return (
@@ -18,6 +21,8 @@ export default function RootLayout({
 			<body>
 			<Navigation/>
 				{children}
+				{/* {props.blogs}
+				{props.dashboard} */}
 				</body>
 		</html>
 	);
