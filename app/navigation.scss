@@ -1,0 +1,36 @@
+.navigation{
+		box-shadow: -2px -1px 12px 2px #0000001a;
+		display: flex;
+		justify-content: space-around;
+		padding: 20px;
+		font-size: 30px;
+	ul {
+		list-style:none;
+		display:flex;
+		li {
+			a{
+				padding:10px;
+				display:block;
+				text-decoration: none;
+				color: #000;
+				&:hover{
+					color: green;
+				}
+				&.active{
+					color: green;
+				}
+			}
+		}
+	}
+}
+
+.darkMode .navigation{
+	box-shadow: -2px -1px 12px 2px rgb(136 203 54 / 99%);
+	ul {
+		li {
+			a {
+				color:white;
+			}
+		}
+	}
+}

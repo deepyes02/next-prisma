@@ -2,22 +2,27 @@
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 // import { useRouter } from 'next/navigation';
-import './navigation.css';
+import './navigation.scss';
 
-function findLinkCurrentPath(link){
-	// return usePathname().startsWith(link) ? true : false;
+function findLinkCurrentPath(link) {
 	return usePathname() == link ? true : false;
 }
 
 export default function Navigation() {
+	const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
+		(e.target as HTMLInputElement).checked ? document.body.classList.add('darkMode') :
+		document.body.classList.remove('darkMode');
+	}
+
+	
 	return (
 		<nav className='navigation'>
 			<ul>
-				<li className={findLinkCurrentPath('/') ? 'active' : 'inactive' }><Link href="/">Home</Link></li>
-				<li className={findLinkCurrentPath('/dashboard') ? 'active' : 'inactive' }><Link href="/dashboard">Dashboard</Link></li>
-				<li className={findLinkCurrentPath('/blogs') ? 'active' : 'inactive' }><Link href="/blogs">Blogs</Link></li>
+				<li><Link className={findLinkCurrentPath('/') ? 'active' : 'inactive'} href="/">Home</Link></li>
+				<li><Link className={findLinkCurrentPath('/dashboard') ? 'active' : 'inactive'} href="/dashboard">Dashboard</Link></li>
+				<li><Link className={findLinkCurrentPath('/blogs') ? 'active' : 'inactive'} href="/blogs">Blogs</Link></li>
 			</ul>
-			{/* <button type="button" onClick={()=> useRouter().push('/dashboard')}>Dashboard via Router push</button> */}
+			<input id="dark_mode" type='checkbox' value='dark_mode' name='dark_mode' onClick={handleClick} />
 		</nav>
 	)
 }

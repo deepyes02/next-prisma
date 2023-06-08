@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
 import Navigation from './navigation';
-import './main.css';
+import './main.scss'
 
 export const metadata : Metadata = {
 	title: 'Hello world',
