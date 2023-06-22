@@ -18,6 +18,16 @@ services:
       - 33060
     ports:
       - '3306:3306'
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - db
+    environment:
+      - PMA_HOSTS=db
+    ports:
+      - "3200:80"
+    volumes:
+      - ./phpmyadmin:/sessions
   app:
     build:
       context: .
@@ -32,3 +42,5 @@ services:
       - default
 volumes:
   node_modules:
+  phpmyadmin:
+  db_data:
