@@ -16,7 +16,7 @@ export default function Github(){
 	useEffect( () => {
 		fetchUserData()
 	}, [])
-	console.log(user)
+	// console.log(user)
 	return (
 		<div>
 			{user.bio}
