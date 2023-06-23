@@ -1,14 +1,32 @@
-import {prisma} from "../../src/api/prisma";
+'use client';
+import {Menu} from "@prisma/client";
+import {useEffect, useState} from 'react';
+
+
+async function getMenu (setData : any){
+	await fetch("http://localhost/api/menu").then(res => res.json())
+	.then(data => {
+		setData(data)
+	})
+	.catch(error => {
+		console.log(error)
+	})
+	return;
+}
 
 export default async function Page() {
-	const menu = prisma.menu.findMany();
+	const [data, setData] = useState([]);
+	useEffect(()=>{
+		getMenu(setData)
+	}, [])
+
 	return (
-		<ul>
-			{
-				(await menu).map(item=>(
-					<li key={item.id}>{item.name}</li>
-				))
-			}
-		</ul>
+		<>
+		{data.map(item => 
+			(
+				<div key={item.id}>{item.name}</div>
+			)
+			)}
+		</>
 	)
 }
