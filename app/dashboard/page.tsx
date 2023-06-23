@@ -1,20 +1,11 @@
-import {PrismaClient} from '@prisma/client';
+import {prisma} from "../../src/api/prisma";
 
-export async function getInitialProps(){
-	const prisma = new PrismaClient();
-	const menu = await prisma.menu.findMany()
-
-	return {
-		props : {menu}
-	}
-}
-
-export default function Page(menu) {
-	
+export default async function Page() {
+	const menu = prisma.menu.findMany();
 	return (
 		<ul>
 			{
-				menu.map(item=>(
+				(await menu).map(item=>(
 					<li key={item.id}>{item.name}</li>
 				))
 			}
