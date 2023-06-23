@@ -11,3 +11,25 @@ export async function GET(
 	}
 	return NextResponse.json(posts)
 }
+/*
+model Post {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  title     String   @db.VarChar(255)
+  published Boolean  @default(false)
+  slug String @db.VarChar(255)
+}
+*/
+
+export async function POST(request : Request) {
+	const json = await request.json()
+	try{
+		const post = await prisma.post.create({
+			data: json
+		})
+		return NextResponse.json({post : post.id})
+	}
+	catch(error: any) {
+	return NextResponse.json({error: error})		
+	}
+}
